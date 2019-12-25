@@ -19,12 +19,15 @@
 </head>
 <body> 
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron py-1">
             <h1>Welcome to Tic Tac Toe</h1>
-            <button class="btn btn-primary">Restart!</button>
+            <div class="d-flex justify-content-between">
+                <h2 id="turn">X turn</h2>
+                <button class="btn btn-primary m-2 restartBtn">Restart!</button>
+            </div>
         </div>
-        
-      <table align="center">
+        <button class="btn btn-primary" onclick="start(this)">START GAME!</button>
+      <table align="center" class="d-none" id="table">
         <tr>
             <td></td>
             <td></td>
@@ -42,8 +45,11 @@
         </tr>
         
       </table>
-
     </div>
     <script src="./game.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 </body>
 </html>
