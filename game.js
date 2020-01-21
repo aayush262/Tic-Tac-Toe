@@ -155,7 +155,8 @@ checkWin = () => {
 Victory = (victor) => {
     document.getElementById('turn').innerHTML = `<h1>${victor}'s VICTORY!<h1>`
     setTimeout(() => {
-        alert(`${victor}'s VICTORY!`);
+        if(!alert(`${victor}'s VICTORY!`)){window.location.reload();}
+        
         clear();
     },10);
 }
