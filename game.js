@@ -156,72 +156,58 @@ Victory = (victor) => {
     document.getElementById('turn').innerHTML = `<h1>${victor}'s VICTORY!<h1>`
     setTimeout(() => {
         if(!alert(`${victor}'s VICTORY!`)){window.location.reload();}
-        
-        clear();
-    },10);
+    },100);
 }
 
-
 let drawVictoryLine = line => {
+    let a,b,c,d;
     switch (line) {
         case 'v1':
-            document.querySelector('#table').appendChild(createLine(180, 200, 180, 550));
+            a=85; b=0; c=85; d=460;
             break;
         case 'v2':
-            document.querySelector('#table').appendChild(createLine(310, 200, 310, 550));
+            a=230; b=0; c=230; d=460;
             break;
         case 'v3':
-            document.querySelector('#table').appendChild(createLine(530, 200, 530, 550));
+            a=385; b=0; c=385; d=460;
             break;
         case 'h1':
-            document.querySelector('#table').appendChild(createLine(180, 200, 180, 200));
+            a=0; b=85; c=460; d=85;
             break;
         case 'h2':
-            document.querySelector('#table').appendChild(createLine(180, 370, 180, 370));
+            a=0; b=230; c=460; d=230;
             break;
         case 'h3':
-            document.querySelector('#table').appendChild(createLine(180, 550, 180, 550));
+            a=0; b=385; c=460; d=385;
             break;
         case 'd1':
-            document.querySelector('#table').appendChild(createLine(180, 200, 530, 550));
+            a=0; b=0; c=460; d=460;
             break;
         case 'd2':
-            document.querySelector('#table').appendChild(createLine(530, 200, 180, 550));
+            a=0; b=460; c=460; d=0;
             break;
         default:
             break;
     }
-}
 
-function createLineElement(x, y, length, angle) {
-    var line = document.createElement("div");
-    var styles = 'border: 1px solid black; '
-               + 'width: ' + length + 'px; '
-               + 'height: 0px; '
-               + '-moz-transform: rotate(' + angle + 'rad); '
-               + '-webkit-transform: rotate(' + angle + 'rad); '
-               + '-o-transform: rotate(' + angle + 'rad); '  
-               + '-ms-transform: rotate(' + angle + 'rad); '  
-               + 'position: absolute; '
-               + 'top: ' + y + 'px; '
-               + 'left: ' + x + 'px; ';
-    line.setAttribute('style', styles);  
-    return line;
-}
 
-function createLine(x1, y1, x2, y2) {
-    var a = x1 - x2,
-        b = y1 - y2,
-        c = Math.sqrt(a * a + b * b);
+    new p5(( sketch ) => {
+            sketch.setup = () => {
+            sketch.createCanvas(456, 456);
+        };
+    
+        sketch.draw = () => {
+            sketch.line(a, b, c, d);
+        };
+    });
 
-    var sx = (x1 + x2) / 2,
-        sy = (y1 + y2) / 2;
-
-    var x = sx - c / 2,
-        y = sy;
-
-    var alpha = Math.PI - Math.atan2(-b, a);
-
-    return createLineElement(x, y, c, alpha);
+    $('canvas').css({ 
+        "position": "absolute",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "top":`${$('#table').position().top}px`, 
+        "left":`${$('#table').position().left}px`,
+        "width": `${$('#table').css("width")}`,
+        "height": `${$('#table').css("height")}`
+    })
 }
 
